@@ -314,32 +314,7 @@ func (c *WebsocketUser) writer() {
 	}
 }
 
-// funzione fittizia che uso per testare  via via le query
 
-func dbTest() {
-
-	db, err := sql.Open("mysql", "root:emanuele@tcp(127.0.0.1:3306)/dashboard")
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println("Connection Established")
-	}
-	defer db.Close()
-	var count2 int
-	dash := db.QueryRow("SELECT COUNT(*) FROM Dashboard.Config_dashboard "+
-		"WHERE title_header = ? AND user = ?;", "asg", "disit")
-	err3 := dash.Scan(&count2)
-	if err3 != nil {
-		panic(err.Error())
-	}
-	fmt.Println(count2)
-
-	myString := `{"msgType" : "Firenze", "metricName" : 3, "newValue" : {"personNumber": 321, "lat": 6.05}}`
-	mapstr, newVal := processingMsg([]byte(myString))
-	fmt.Println(mapstr)
-	fmt.Println(newVal)
-
-}
 
 //funzioni per la decodifica dei messaggi json; sono usate in dbProcessing.
 
